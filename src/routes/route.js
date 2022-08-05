@@ -1,11 +1,21 @@
 const express = require('express');
 const abc = require('../introduction/intro')
+const loging =require('../logger/logger')
+const cal=require('../util/helper')
+const format=require('../validator/formattor')
 const router = express.Router();
 
 router.get('/test-me', function (req, res) {
     console.log('My batch is', abc.name)
     abc.printName()
-    res.send('My second ever api!')
+    loging.wlcm_msg()
+    cal.TodayDay()
+    cal.TodayMonth()
+    cal.BatchDetails()
+    format.trim()
+    format.lower()
+    format.upper()
+    res.send('My Code successfully Run Hooorayyy!!!')
 });
 
 
