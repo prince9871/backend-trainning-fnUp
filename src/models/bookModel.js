@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const bookSchema = new mongoose.Schema( {
     bookName: String, 
     authorName: String, 
-    tags: [String],
+    tags: [String],  // all elements in array
     
-    isPublished: Boolean,
+    isPublished: Boolean, //true--- 
     prices: {
         indianPrice: String,
         europePrice: String,
