@@ -8,4 +8,4 @@ const AuthorSchema=new mongoose.Schema({
         
 },{timestamps:true });
 
-module.exports=module.model('newAuthor',AuthorSchema)
+module.exports=mongoose.model('newAuthor',AuthorSchema)

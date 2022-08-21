@@ -11,5 +11,5 @@ const getPublishersData= async function (req, res) {
     res.send({msg: allPublishers})
 }
 
-module.exports.creatAPublisher= createPublisher
+module.exports.createPublisher= createPublisher
 module.exports.getPublishersData= getPublishersData
