@@ -1,17 +1,50 @@
-const { count } = require("console")
+//const { count } = require("console")
 const BookModel= require("../models/bookModel")
 
+//book creation
 const createBook= async function (req, res) {
     let data= req.body
-
     let savedData= await BookModel.create(data)
     res.send({msg: savedData})
 }
 
+//show data from selected data--bookname,authorname
+const BookList=async function(req,res){
+    let allBooks= await BookModel.find().select( { bookName:1,authorName:1,_id:0} )
+    res.send({msg:allBooks})
+}
+
+//whenever i enter the year the book will be shown and
+// byDefault 2021
+const getBooksInYear=async function(req,res){
+    let years=req.query.year
+    let allBooks= await BookModel.find( { year:years}).select({bookName:1,_id:0})
+    res.send({msg:allBooks})
+}
+
+//whenever i enter the data either author name or year it will shown
+const getParticularBooks=async function(req,res){
+    let allBooks=await BookModel.find(req.body)
+    res.send({msg:allBooks})
+}
+
+//data shown only that data published or have pages greater then 500
+const getRandomBooks=async function(req,res){
+    let allBooks=await BookModel.find({$or:[{isPublished:true},{ Pages: { $gt: 500 }}]}).select({bookName:1,_id:0})
+    res.send({msg:allBooks})
+}
+
+//show only prices data
+const getXINRBooks=async function(req,res){
+    let allBooks=await BookModel.find({$in:["100INR","200INR","300INR"]}).select({bookName:1,_id:0})
+    res.send({msg:allBooks})
+}
+
+//return object elements in bookmodel
 const getBooksData= async function (req, res) {
-
-    // let allBooks= await BookModel.find( ).count() // COUNT--number of object
-
+    let allBooks= await BookModel.find().count() // COUNT--number of object
+    res.send({msg:allBooks})
+}
     // let allBooks= await BookModel.find( { authorName : "Chetan Bhagat" , isPublished: true  } ) // AND
     //--by condition data shown like filter
     // let allBooks= await BookModel.find( { 
@@ -61,26 +94,17 @@ const getBooksData= async function (req, res) {
     // REGEX
     // let allBooks= await BookModel.find( { bookName:  /^Int/  }) //starting point Int print that books //CaseSensitive
     // let allBooks= await BookModel.find( { bookName:  /^INT/i  }) //here i for case insensitive
-    // let allBooks= await BookModel.find( { bookName:  /5$/  }) //end point 5 print that book
+    // let allBooks= await BookModel.find( { bookName:  /$$/  }) //end point 5 print that book
     // let allBooks= await BookModel.find( { bookName:  /.*Programming.*/i  }) //point-me kahi  bhi ho dedega
     
-    // ASYNC AWAIT
-    
-    let a= 2+4
-    a= a + 10
-    console.log(a) //16
-    let allBooks= await BookModel.find( )  //normally this is an asynchronous call..but await makes it synchronous
 
-
-    // WHEN AWAIT IS USED: - database + axios
-    //  AWAIT can not be used inside forEach , map and many of the array functions..BE CAREFUL
-    console.log(allBooks)
-    let b = 14
-    b= b+ 10
-    console.log(b)
-    res.send({msg: allBooks})
-}
+// }    ({a:/[INR]$/})
 
 
 module.exports.createBook= createBook
 module.exports.getBooksData= getBooksData
+module.exports.getParticularBooks=getParticularBooks
+module.exports.getBooksInYear=getBooksInYear
+module.exports.getRandomBooks=getRandomBooks
+module.exports.getXINRBooks=getXINRBooks
+module.exports.BookList=BookList
