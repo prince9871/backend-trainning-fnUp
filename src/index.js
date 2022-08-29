@@ -14,33 +14,23 @@ mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzot
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
 
-// app.use (
-//     function (req, res, next) {
-//         console.log ("inside GLOBAL MW");
-//         next();
-//   }
-//   );
+
 const moment =require('moment')
 const time = moment();
-// app.use(
-//     function (req,res,next){
-//         console.log("global chal raha middle ware index file me ")
-//         console.log(time.format('YYYY,MM,DD'))
-//         console.log(time.format('h:mm:ss'))
-//         //console.log(req.socket.remoteAddress)
-//         console.log(req.ip)
-//         console.log(req.originalUrl)
-//        next()
-//     } 
-//  )
-
 app.use(
+    function (req,res,next){
+        console.log("GLOBAL FUNCTION WORKING")
+        console.log(time.format('YYYY,MM,DD')) //2022,08,24
+        console.log(time.format('h:mm:ss'))//08,44
+        console.log(req.socket.remoteAddress) //::1
+        console.log(req.ip)//::1
+        console.log(req.originalUrl)//test-me
+        console.log("---------END OF FUNCTION------")
+       next()
+    } 
+ )
 
-    function mid4(req, res, next) {
-        console.log("Hi I am a middleware named Mid4")
-        next()
-    }
-)
+
 
 
 

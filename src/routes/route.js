@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// const UserModel= require("../models/userModel.js")
 const UserController= require("../controllers/userController")
 const BookController= require("../controllers/bookController")
 const commonMW = require ("../middlewares/commonMiddlewares")
@@ -10,30 +9,9 @@ router.get("/test-me", function (req, res) {
     console.log("my first ever api")
 })
 
-
 router.get('/testing2',commonMW.NOFunction)
-router.post("/createBook", BookController.createBook  )
+//router.post("/createBook", BookController.createBook  )
 
-
-
-
-// router.post("/createUser", UserController.createUser  )
-// router.get("/getUsersData", UserController.getUsersData)
-
-
-// const mid1= function ( req, res, next) {
-//     console.log("Hi I am a middleware named Mid1")
-//     // logic
-//     let loggedIn = false
-
-//     if (loggedIn== true) { 
-//         console.log( "OK LOGGED IS IS TRUE NOW")
-//         next ()
-//     }
-//     else {
-//         res.send ("Please login or register")
-//     }
-// }
 
 // // e.g. restricted and open-to-all API's can be handled like below now:
 // router.get('/homePage', mid1, UserController.feeds)
