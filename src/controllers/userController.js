@@ -74,7 +74,7 @@ const getUserData = async function (req, res) {
 };
 
 const updateUser = async function (req, res) {
-    // Do the same steps here:
+    // Do the same steps here
     // Check if the token is present
     // Check if the token present is a valid token
     // Return a different error message in both these cases
