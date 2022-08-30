@@ -7,6 +7,8 @@ router.get("/test-me", function (req, res) {
 })
 
 router.post("/createusers", userController.createUser  )
+router.get("/getusers1", userController.getusers )
+
 
 router.post("/loginUser", userController.loginUser, AuthController.CreatingToken)
 

@@ -8,6 +8,11 @@ const createUser = async function (abcd, xyz) {
   let savedData = await userModel.create(data);
   xyz.send({ msg: savedData });
 };
+
+const getusers=async function(req,res){
+  let a=await userModel.find()
+  res.send(a)
+}
 // login user *************************************************************************************************************************
 const loginUser = async function (req, res,next) {
   let userName = req.body.emailId;
@@ -67,3 +72,5 @@ module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
 module.exports.deleteUser = deleteUser
+module.exports.getusers = getusers
+
