@@ -24,7 +24,7 @@ let getCityTemp = async function (req, res) {
     try {
 
         let city = ["Bengaluru", "Mumbai", "Delhi", "Kolkata", "Chennai", "London", "Moscow"]
-        for (let i = 0; i < city.length; i++) {
+        for (let i in city) {
             q = city[i]
             var options = {
                 method: "get",
@@ -42,28 +42,9 @@ let getCityTemp = async function (req, res) {
     }
 }
 
-let memeHandler = async function (req, res) {
-    try {
-
-        var options = {
-            method: "post",
-            url: `https://api.imgflip.com/caption_image?template_id=129242436&text0=Hi&text1=Awesome&username=chewie12345&password=meme@123`,
-           
-        }
-
-        let result = await axios(options)
-       
-        res.status(200).send({ msg: result.data })
-    }
-    catch (err) {
-        console.log(err)
-        res.status(500).send({ msg: err.message })
-    }
-}
-
 module.exports.getWeather = getWeather
 module.exports.getCityTemp = getCityTemp
-module.exports.memeHandler = memeHandler
+
 
 
 
